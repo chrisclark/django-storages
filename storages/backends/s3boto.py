@@ -405,6 +405,7 @@ class S3BotoStorage(Storage):
     def delete(self, name):
         name = self._normalize_name(self._clean_name(name))
         self.bucket.delete_key(self._encode_name(name))
+        del self.entries[self._encode_name(name)]
 
     def exists(self, name):
         name = self._normalize_name(self._clean_name(name))
